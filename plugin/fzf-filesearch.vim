@@ -6,7 +6,7 @@ vim9script
 import './fzf-options.vim' as Fzf
 
 def FzfPluginSource(): list<string>
-  return split(system('rg --color ansi --line-number .'), "\n")
+  return split(system('rg --no-messages --color ansi --line-number .'), "\n")
 enddef
 
 def FzfPluginSink(entry: list<string>): void
