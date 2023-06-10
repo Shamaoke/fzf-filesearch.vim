@@ -10,18 +10,20 @@ def FzfPluginSource(): list<string>
 enddef
 
 def FzfPluginSink(entry: list<string>): void
-  var [key, value] = entry
+  if len(entry) > 1
+    var [key, value] = entry
 
-  var [path, line; _] = split(value, ':')
+    var [path, line; _] = split(value, ':')
 
-  if key == 'enter'
-    execute $"edit +{line} {path}"
-  elseif key == 'ctrl-t'
-    execute $"tabedit +{line} {path}"
-  elseif key == 'ctrl-s'
-    execute $"split +{line} {path}"
-  elseif key == 'ctrl-v'
-    execute $"vsplit +{line} {path}"
+    if key == 'enter'
+      execute $"edit +{line} {path}"
+    elseif key == 'ctrl-t'
+      execute $"tabedit +{line} {path}"
+    elseif key == 'ctrl-s'
+      execute $"split +{line} {path}"
+    elseif key == 'ctrl-v'
+      execute $"vsplit +{line} {path}"
+    endif
   endif
 enddef
 
